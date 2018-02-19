@@ -50,7 +50,8 @@
                 var ss = date.getSeconds();
                 child[0].innerHTML = "距离女神高考还有";
                 child[1].innerHTML = d+"天"+h+"小时"+m+"分"+s+"秒";
-                child[2].innerHTML = "今天是："+date.getFullYear()+"年"+date.getMonth()+"月"+date.getDate()+"日";
+                //child[2].innerHTML = "今天是："+date.getFullYear()+"年"+date.getMonth()+"月"+date.getDate()+"日";
+                child[2].innerHTML = "今天是："+date.toLocaleString();
                 child[3].innerHTML = arr[date.getDay()];
                 // date.getHours()>10 ? date.getHours="0"+date.getHours() : date.getHours();
                 // date.getMinutes()>10 ? date.getMinutes="0"+date.getMinutes() : date.getMinutes();
