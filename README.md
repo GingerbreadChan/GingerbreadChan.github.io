@@ -1,2 +1,0 @@
-# GingerbreadChan.github.io
-MyFirstweb
