@@ -1,73 +1,192 @@
+<!DOCTYPE html>
 <html>
-<link href="css/css.css" rel="stylesheet" type="text/css"/>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- 
- <title>距离女神高考时间</title>
+    <meta charset="utf-8" />
     <style>
-        *{margin: 0;padding: 0;}
-        div{
-            line-height: 100%;
-            /*width: 400px;
-            height: 200px;*/
-            margin: 0px auto;
-            text-align: center;
+        /*最外层容器样式*/
+        .wrap {
+            width: 200px;
+            height: 200px;
+            margin: 200px;
+            position: relative;
         }
-        li{
-            list-style: none;
-            font-size: 18px;
-            color: mediumpurple;
-            font-weight: 700;
-            line-height: 40px;
+
+        /*包裹所有容器样式*/
+        .cube {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            transform: rotateX(-30deg) rotateY(-80deg);
+            animation: rotate linear 20s infinite;
         }
-    </style>
-    <script>
-        window.onload = function () {
-            var box = document.getElementById("box");
-            var child = box.children;
-            setInterval(fun,1000);
-            function fun() {
-                var endTime = new Date("2020/06/07 00:00:00");
-                var endDate = endTime.getTime();
-                var date = new Date();
-                var nowDate = date.getTime();
-                var second = (endDate-nowDate)/1000;
-              	var d = parseInt(second / 3600 / 24);
-                var h = parseInt(second /3600 % 24);
-                var m = parseInt(second / 60 % 60);
-                var s = parseInt(second % 60);
-                var arr = ["星期天","星期一","星期二","星期三","星期四","星期五","星期六"];  
-                child[2].innerHTML = parseInt((endDate-nowDate)/1000 / 3600 % 24)+"小时";
-                child[3].innerHTML = parseInt((endDate-nowDate)/1000 / 60 % 60)+"分";
-                child[4].innerHTML = parseInt((endDate-nowDate)/1000 % 60)+"秒";
-                d < 10 ? d="0"+ d : d;
-                h < 10 ? h="0"+ h : h;
-                m < 10 ? m="0"+ m : m;
-                s < 10 ? s="0"+ s : s;
-                var hh = date.getHours();
-                var mm = date.getMinutes();
-                var ss = date.getSeconds();
-                child[0].innerHTML = "距离女神高考还有";
-                child[1].innerHTML = d+"天"+h+"小时"+m+"分"+s+"秒";
-                child[2].innerHTML = "今天是："+date.toLocaleDateString();
-                child[3].innerHTML = arr[date.getDay()];
-                hh < 10 ? hh="0"+ hh : hh;
-                mm < 10 ? mm="0"+ mm : mm;
-                ss < 10 ? ss="0"+ ss : ss;
-                child[4].innerHTML ="当前时间："+ hh+":"+mm+":"+ss;
+
+        @-webkit-keyframes rotate {
+            from {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+            to {
+                transform: rotateX(360deg) rotateY(360deg);
             }
         }
-    </script>
+
+        .cube div {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            opacity: 0.8;
+            transition: all .4s;
+        }
+
+        /*定义所有图片样式*/
+        .pic {
+            width: 200px;
+            height: 200px;
+        }
+
+        .cube .out_front {
+            transform: rotateY(0deg) translateZ(100px);
+        }
+
+        .cube .out_back {
+            transform: translateZ(-100px) rotateY(180deg);
+        }
+
+        .cube .out_left {
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+
+        .cube .out_right {
+            transform: rotateY(90deg) translateZ(100px);
+        }
+
+        .cube .out_top {
+            transform: rotateX(90deg) translateZ(100px);
+        }
+
+        .cube .out_bottom {
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+
+        /*定义小正方体样式*/
+        .cube span {
+            display: block;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+        }
+
+        .cube .in_pic {
+            width: 100px;
+            height: 100px;
+        }
+
+        .cube .in_front {
+            transform: rotateY(0deg) translateZ(50px);
+        }
+
+        .cube .in_back {
+            transform: translateZ(-50px) rotateY(180deg);
+        }
+
+        .cube .in_left {
+            transform: rotateY(-90deg) translateZ(50px);
+        }
+
+        .cube .in_right {
+            transform: rotateY(90deg) translateZ(50px);
+        }
+
+        .cube .in_top {
+            transform: rotateX(90deg) translateZ(50px);
+        }
+
+        .cube .in_bottom {
+            transform: rotateX(-90deg) translateZ(50px);
+        }
+
+        /*鼠标移入后样式*/
+        .cube:hover .out_front {
+            transform: rotateY(0deg) translateZ(200px);
+        }
+
+        .cube:hover .out_back {
+            transform: translateZ(-200px) rotateY(180deg);
+        }
+
+        .cube:hover .out_left {
+            transform: rotateY(-90deg) translateZ(200px);
+        }
+
+        .cube:hover .out_right {
+            transform: rotateY(90deg) translateZ(200px);
+        }
+
+        .cube:hover .out_top {
+            transform: rotateX(90deg) translateZ(200px);
+        }
+
+        .cube:hover .out_bottom {
+            transform: rotateX(-90deg) translateZ(200px);
+        }
+    </style>
 </head>
+
 <body>
-<div>
-    <ul id="box">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-</div>
+    <!-- 外层最大容器 -->
+    <div class="wrap">
+        <!--包裹所有元素的容器-->
+        <div class="cube">
+            <!--前面图片 -->
+            <div class="out_front">
+                <img src="http://img.blog.csdn.net/20170716094246620" class="pic" />
+            </div>
+            <!--后面图片 -->
+            <div class="out_back">
+                <img src="http://img.blog.csdn.net/20170716094334594" class="pic" />
+            </div>
+            <!--左面图片 -->
+            <div class="out_left">
+                <img src="http://img.blog.csdn.net/20170716094400013" class="pic" />
+            </div>
+            <!--右面图片 -->
+            <div class="out_right">
+                <img src="http://img.blog.csdn.net/20170716094422331" class="pic" />
+            </div>
+            <!--上面图片 -->
+            <div class="out_top">
+                <img src="http://img.blog.csdn.net/20170716094444434" class="pic" />
+            </div>
+            <!--下面图片 -->
+            <div class="out_bottom">
+                <img src="http://img.blog.csdn.net/20170716094504432" class="pic" />
+            </div>
+
+            <!--小正方体 -->
+            <span class="in_front">
+                <img src="http://img.blog.csdn.net/20170716120759718" class="in_pic" />
+            </span>
+            <span class="in_back">
+                 <img src="http://img.blog.csdn.net/20170716120759718" class="in_pic" />
+            </span>
+            <span class="in_left">
+                <img src="http://img.blog.csdn.net/20170716120759718" class="in_pic" />
+            </span>
+            <span class="in_right">
+                <img src="http://img.blog.csdn.net/20170716120759718" class="in_pic" />
+            </span>
+            <span class="in_top">
+                <img src="http://img.blog.csdn.net/20170716120759718" class="in_pic" />
+            </span>
+            <span class="in_bottom">
+                <img src="http://img.blog.csdn.net/20170716120759718" class="in_pic" />
+            </span>
+        </div>
+
+    </div>
 </body>
+
 </html>
